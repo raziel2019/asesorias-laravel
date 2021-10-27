@@ -1,0 +1,56 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateAsesoriaProfesorsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('asesoria_profesors', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('perfil_profesor_id');
+            $table->unsignedBigInteger('pais_id');
+            $table->unsignedBigInteger('profesion_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('Descripcion');
+            $table->foreign('perfil_profesor_id')
+            ->references('id')
+            ->on('perfil_profesors')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('profesion_id')
+            ->references('id')
+            ->on('profesions')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('pais_id')
+            ->references('id')
+            ->on('pais')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('asesoria_profesors');
+    }
+}

@@ -4,23 +4,60 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+   
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin Admin',
-            'email' => 'admin@argon.com',
+          $admin = User::create([
+            'id' => 1,
+            'name' => 'Administrador',
+            'Paterno' => 'Lopez',
+            'Materno' => 'Gonzalez',
+            'Sexo' => 'Hombre',
+            'email' => 'admin@asesoria.com',
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
+            'Escolaridad' => 'Licenciatura',
             'created_at' => now(),
             'updated_at' => now()
+            
+        
         ]);
+        $prof = User::create([
+            'id' => 2,
+            'name' => 'Profesor',
+            'Paterno' => 'Rodriguez',
+            'Materno' => 'Gonzalez',
+            'Sexo' => 'Hombre',
+            'email' => 'profesor@asesoria.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('secret'),
+            'Escolaridad' => 'Licenciatura',
+            'created_at' => now(),
+            'updated_at' => now()
+            
+        
+        ]);
+        $usua = User::create([
+            'id' => 3,
+            'name' => 'Usuario',
+            'Paterno' => 'Uh',
+            'Materno' => 'Balam',
+            'Sexo' => 'Hombre',
+            'email' => 'usuario@asesoria.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('secret'),
+            'Escolaridad' => 'Bachillerato',
+            'created_at' => now(),
+            'updated_at' => now()
+            
+        
+        ]);
+        $admin->assignRole('Administrador');
+        $prof->assignRole('Profesor');
+        $usua->assignRole('Usuario');
     }
 }

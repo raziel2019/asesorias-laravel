@@ -33,5 +33,14 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+
+	//Usuarios
+	Route::get('/usuarios', 'App\Http\Controllers\UsuariosController@index')->name('usuarios');
+	Route::get('/usuarios/create', 'App\Http\Controllers\UsuariosController@create')->name('usuarios.create');
+	Route::post('/usuarios', 'App\Http\Controllers\UsuariosController@store')->name('usuarios.store');
+
+	Route::get('/usuarios/{id}/edit','App\Http\Controllers\UsuariosController@edit')->name('usuarios.edit');
+	Route::put('/usuarios/{id}','App\Http\Controllers\UsuariosController@update')->name('usuarios.update');
+	Route::delete('/usuarios/{id}','App\Http\Controllers\UsuariosController@destroy')->name('usuarios.destroy');
 });
 
