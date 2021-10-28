@@ -2,17 +2,19 @@
 
 @section('content')
 
-    <div class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-8">
-                                <h4 class="card-title">Editar Usuarios</h4>
-                            </div>
-                        </div>
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+
+<div class="container-fluid mt--7">
+    <div class="row justify-content-center">
+       <div class="col">
+           <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h1 class="mb-0">Editar Usuarios</h1>
                     </div>
+                </div>
+            </div>
                     <div class="card-body">
                         <form action="{{ route('usuarios.update',$usuarios->id ) }}" method="POST" enctype="multipart/form-data">
                             @csrf

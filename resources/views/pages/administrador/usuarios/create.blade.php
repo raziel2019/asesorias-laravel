@@ -1,18 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-8">
-                                <h4 class="card-title">Agregar Usuarios</h4>
-                            </div>
-                        </div>
-                    </div>
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
+<div class="container-fluid mt--7" style="">
+    <div class="card bg-white shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <h1 class="mb-0">{{ __('Agregar Usuarios') }}</h1>
+            </div>
+        </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('usuarios.store' ) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
