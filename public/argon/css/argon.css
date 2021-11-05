@@ -20806,7 +20806,7 @@ textarea[resize='horizontal']
     top: auto;
     right: 0;
     left: 0;
-
+    display: none;
     overflow: hidden;
 
     width: 100%;

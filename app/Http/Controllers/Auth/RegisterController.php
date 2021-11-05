@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'Materno' => ['required', 'string', 'max:255'] ,
             'Sexo' => ['required', 'string'],
             'Escolaridad' => ['required', 'string'],
-            'agree_terms_and_conditions' => ['required'],
+            'nickname' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -69,14 +69,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+    
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'Paterno' => $data['Paterno'],
             'Materno' => $data['Materno'] ,
             'Sexo' => $data['Sexo'],
             'Escolaridad' => $data['Escolaridad'],
+            'nickname' => $data['nickname'],
             'password' => Hash::make($data['password']),
         ]);
+
+
+        if($data['nickname'] == 'Administrador')
+        {
+            $user->assignRole('Administrador');
+            
+        }
+        else
+        {
+            if($data['nickname'] == 'Profesor')
+            {
+                $user->assignRole('Profesor');
+            }
+            else
+            {
+                $user->assignRole('Usuario');
+            }
+        }
+
+        return $user;
     }
 }

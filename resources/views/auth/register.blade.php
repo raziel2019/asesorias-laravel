@@ -39,6 +39,35 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group{{ $errors->has('Paterno') ? ' has-danger' : '' }}">
+                                <small style="font-size: 12px">Apellido Paterno</small>
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input class="form-control{{ $errors->has('Paterno') ? ' is-invalid' : '' }}" placeholder="{{ __('Paterno') }}" type="text" name="Paterno" value="{{ old('Paterno') }}" required autofocus>
+                                </div>
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('Materno') ? ' has-danger' : '' }}">
+                                <small style="font-size: 12px">Apellido Materno</small>
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input class="form-control{{ $errors->has('Materno') ? ' is-invalid' : '' }}" placeholder="{{ __('Materno') }}" type="text" name="Materno" value="{{ old('Materno') }}" required autofocus>
+                                </div>
+                                @if ($errors->has('Materno'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('Materno') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <small style="font-size: 12px">Correo electrónico</small>
                                 <div class="input-group input-group-alternative mb-3">
@@ -53,6 +82,61 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group{{ $errors->has('Sexo') ? ' has-danger' : '' }}">
+                                <small style="font-size: 12px">Sexo</small>
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <select class="custom-select" name="Sexo">
+                                        <option selected>Elija una opcion...</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                      </select>                               </div>
+                                @if ($errors->has('Sexo'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('Sexo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('Escolaridad') ? ' has-danger' : '' }}">
+                                <small style="font-size: 12px">Escolaridad</small>
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <select class="custom-select" name="Escolaridad">
+                                        <option selected>Elija una opcion...</option>
+                                        <option value="Licenciatura">Licenciatura</option>
+                                        <option value="TSU">TSU</option>
+                                        <option value="Bachillerato">Bachillerato</option>
+                                      </select>                                     </div>
+                                @if ($errors->has('Escolaridad'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('Escolaridad') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group{{ $errors->has('nickname') ? ' has-danger' : '' }}">
+                                <small style="font-size: 12px">Role</small>
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <select class="custom-select" name="nickname">
+                                        <option selected>Elija una opcion...</option>
+                                        <option value="Usuario">Usuario</option>
+                                        <option value="Profesor">Profesor</option>
+                                      </select>
+                                </div>
+                                @if ($errors->has('nickname'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('nickname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            
                             <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <small style="font-size: 12px">Contraseña</small>
                                 <div class="input-group input-group-alternative">
@@ -74,19 +158,6 @@
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
                                     <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>
-                                </div>
-                            </div>
-                            <div class="text-muted font-italic">
-                                <small>{{ __('password strength') }}: <span class="text-success font-weight-700">{{ __('strong') }}strong</span></small>
-                            </div>
-                            <div class="row my-4">
-                                <div class="col-12">
-                                    <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                        <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">{{ __('I agree with the') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
                             <div class="text-center">

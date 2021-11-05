@@ -22,8 +22,10 @@ class User extends Authenticatable
         'Materno',
         'Sexo',
         'Escolaridad',
+        'nickname',
         'email',
         'password',
+        
     ];
     public function asesoria_profesor()
         {

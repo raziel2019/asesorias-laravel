@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
             'Escolaridad' => 'Licenciatura',
+            'nickname' => 'Administrador',
             'created_at' => now(),
             'updated_at' => now()
             
@@ -36,6 +37,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
             'Escolaridad' => 'Licenciatura',
+            'nickname' => 'Profesor',
             'created_at' => now(),
             'updated_at' => now()
             
@@ -51,6 +53,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
             'Escolaridad' => 'Bachillerato',
+            'nickname' => 'Usuario',
             'created_at' => now(),
             'updated_at' => now()
             
