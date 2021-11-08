@@ -19,14 +19,19 @@ class PerfilProfesor extends Model
         'Cursos',
         'PerfilProfesorcol',
         'Pais_id',
-        'Profesion_id'
+        'Profesion_id',
+        'Usuarios_id'
     ];
-    public function pais()
+    public function paises()
     {
-        return $this->hasMany(Pais::class);
+        return $this->belongsTo(Pais::class, 'Pais_id','id');
     }
-    public function profesion()
+    public function profesiones()
     {
-        return $this->hasMany(Profesion::class);
+        return $this->belongsTo(Profesion::class, 'Profesion_id','id');
     }
+    public function users()
+        {
+            return $this->belongsTo(User::class,'Usuarios_id','id');
+        }
 }

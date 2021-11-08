@@ -13,7 +13,7 @@ class Profesion extends Model
         
     ];
     public function perfil_profesor()
-    {
-        return $this->belongsTo(PerfilProfesor::class);
-    }
+        {
+            return $this->hasMany(PerfilProfesor::class,'Usuarios_id','id');
+        }
 }

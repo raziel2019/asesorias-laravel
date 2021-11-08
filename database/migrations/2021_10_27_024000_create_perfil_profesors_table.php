@@ -15,14 +15,20 @@ class CreatePerfilProfesorsTable extends Migration
     {
         Schema::create('perfil_profesors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pais_id');
-            $table->unsignedBigInteger('profesion_id');
-            $table->foreign('pais_id')
+            $table->unsignedBigInteger('Pais_id');
+            $table->unsignedBigInteger('Profesion_id');
+            $table->unsignedBigInteger('Usuarios_id');
+            $table->foreign('Usuarios_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('Pais_id')
             ->references('id')
             ->on('pais')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->foreign('profesion_id')
+            $table->foreign('Profesion_id')
             ->references('id')
             ->on('profesions')
             ->onDelete('cascade')

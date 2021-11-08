@@ -31,6 +31,12 @@ class User extends Authenticatable
         {
             return $this->hasMany(AsesoriaProfesor::class,'usuarios_id','id');
         }
+    public function perfil_profesor()
+        {
+            return $this->hasMany(PerfilProfesor::class,'Usuarios_id','id');
+        }
+        
+
     /**
      * The attributes that should be hidden for serialization.
      *

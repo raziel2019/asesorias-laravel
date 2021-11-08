@@ -33,7 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+});
 
+Route::group(['middleware' => ['role:Administrador']], function () {
+	
 	//Usuarios
 	Route::get('/usuarios', 'App\Http\Controllers\UsuariosController@index')->name('usuarios');
 	Route::get('/usuarios/create', 'App\Http\Controllers\UsuariosController@create')->name('usuarios.create');
@@ -42,5 +45,34 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/usuarios/{id}/edit','App\Http\Controllers\UsuariosController@edit')->name('usuarios.edit');
 	Route::put('/usuarios/{id}','App\Http\Controllers\UsuariosController@update')->name('usuarios.update');
 	Route::delete('/usuarios/{id}','App\Http\Controllers\UsuariosController@destroy')->name('usuarios.destroy');
-});
 
+	//Profesores
+	Route::get('/profesores', 'App\Http\Controllers\profesoresController@index')->name('profesores');
+	Route::get('/profesores/{id}', 'App\Http\Controllers\profesoresController@show')->name('profesores.show');
+	Route::delete('/profesores/{id}','App\Http\Controllers\profesoresController@destroy')->name('profesores.destroy');
+
+	//Paises
+	Route::get('/paises', 'App\Http\Controllers\paisController@index')->name('paises');
+	Route::get('/paises/create', 'App\Http\Controllers\paisController@create')->name('paises.create');
+	Route::post('/paises', 'App\Http\Controllers\paisController@store')->name('paises.store');
+	Route::get('/paises/{id}/edit','App\Http\Controllers\paisController@edit')->name('paises.edit');
+	Route::put('/paises/{id}','App\Http\Controllers\paisController@update')->name('paises.update');
+	Route::delete('/paises/{id}','App\Http\Controllers\paisController@destroy')->name('paises.destroy');
+
+	//Profesiones
+	Route::get('/profesiones', 'App\Http\Controllers\profesionesController@index')->name('profesiones');
+	Route::get('/profesiones/create', 'App\Http\Controllers\profesionesController@create')->name('profesiones.create');
+	Route::post('/profesiones', 'App\Http\Controllers\profesionesController@store')->name('profesiones.store');
+	Route::get('/profesiones/{id}/edit','App\Http\Controllers\profesionesController@edit')->name('profesiones.edit');
+	Route::put('/profesiones/{id}','App\Http\Controllers\profesionesController@update')->name('profesiones.update');
+	Route::delete('/profesiones/{id}','App\Http\Controllers\profesionesController@destroy')->name('profesiones.destroy');
+
+	//Asesorias
+	Route::get('/asesorias', 'App\Http\Controllers\asesoriasController@index')->name('asesorias');
+	Route::get('/asesorias/create', 'App\Http\Controllers\asesoriasController@create')->name('asesorias.create');
+	Route::post('/asesorias', 'App\Http\Controllers\asesoriasController@store')->name('asesorias.store');
+	Route::get('/asesorias/{id}/edit','App\Http\Controllers\asesoriasController@edit')->name('asesorias.edit');
+	Route::put('/asesorias/{id}','App\Http\Controllers\asesoriasController@update')->name('asesorias.update');
+	Route::delete('/asesorias/{id}','App\Http\Controllers\asesoriasController@destroy')->name('asesorias.destroy');
+
+});

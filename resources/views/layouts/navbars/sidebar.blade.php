@@ -94,6 +94,38 @@
                     </a>
                 </li>
 @endrole
+@role('Administrador')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('profesores') }}">
+                      <i class="ni ni-hat-3 text-default"></i>
+                      <span class="nav-link-text">Profesores</span>
+                    </a>
+                </li>
+@endrole
+@role('Administrador')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('paises') }}">
+                      <i class="ni ni-map-big text-default"></i>
+                      <span class="nav-link-text">Paises</span>
+                    </a>
+                </li>
+@endrole
+@role('Administrador')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('profesiones') }}">
+                      <i class="ni ni-ruler-pencil text-default"></i>
+                      <span class="nav-link-text">Profesiones</span>
+                    </a>
+                </li>
+@endrole
+@role('Administrador')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('asesorias') }}">
+                      <i class="ni ni-paper-diploma text-default"></i>
+                      <span class="nav-link-text">Asesorias</span>
+                    </a>
+                </li>
+@endrole
             </ul>
         </div>
     </div>
