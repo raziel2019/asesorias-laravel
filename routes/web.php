@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
+
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
@@ -69,10 +69,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
 
 	//Asesorias
 	Route::get('/asesorias', 'App\Http\Controllers\asesoriasController@index')->name('asesorias');
-	Route::get('/asesorias/create', 'App\Http\Controllers\asesoriasController@create')->name('asesorias.create');
-	Route::post('/asesorias', 'App\Http\Controllers\asesoriasController@store')->name('asesorias.store');
-	Route::get('/asesorias/{id}/edit','App\Http\Controllers\asesoriasController@edit')->name('asesorias.edit');
-	Route::put('/asesorias/{id}','App\Http\Controllers\asesoriasController@update')->name('asesorias.update');
+	Route::get('/asesorias/{id}', 'App\Http\Controllers\asesoriasController@show')->name('asesorias.show');
 	Route::delete('/asesorias/{id}','App\Http\Controllers\asesoriasController@destroy')->name('asesorias.destroy');
 
 });

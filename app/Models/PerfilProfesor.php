@@ -30,6 +30,10 @@ class PerfilProfesor extends Model
     {
         return $this->belongsTo(Profesion::class, 'Profesion_id','id');
     }
+    public function asesorias()
+    {
+        return $this->hasMany(AsesoriaProfesor::class, 'perfil_profesor_id','id');
+    }
     public function users()
         {
             return $this->belongsTo(User::class,'Usuarios_id','id');

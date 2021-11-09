@@ -16,23 +16,13 @@ class CreateAsesoriaProfesorsTable extends Migration
         Schema::create('asesoria_profesors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('perfil_profesor_id');
-            $table->unsignedBigInteger('pais_id');
-            $table->unsignedBigInteger('profesion_id');
             $table->unsignedBigInteger('user_id');
             $table->string('Descripcion');
+            $table->string('FechaAsesoria');
+            $table->string('Estatus');
             $table->foreign('perfil_profesor_id')
             ->references('id')
             ->on('perfil_profesors')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->foreign('profesion_id')
-            ->references('id')
-            ->on('profesions')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->foreign('pais_id')
-            ->references('id')
-            ->on('pais')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->foreign('user_id')

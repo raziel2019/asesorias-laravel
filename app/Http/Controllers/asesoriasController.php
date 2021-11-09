@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AsesoriaProfesor;
-use App\Models\Pais;
+use App\Models\PerfilProfesor;
 use App\Models\User;
-use App\Models\Profesion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -20,9 +19,8 @@ class asesoriasController extends Controller
     public function index()
     {        
         $usuarios = User::all();
-        $profesiones = Profesion::all();
-        $paises = Pais::all();
-        $asesorias = AsesoriaProfesor::with('users','paises','profesiones')->paginate(6); 
+        $profesores = PerfilProfesor::all();
+        $asesorias = AsesoriaProfesor::with('users','profesores')->paginate(6); 
         return view('pages.administrador.Asesoria.index', compact ('asesorias') );
        
     }
@@ -34,8 +32,7 @@ class asesoriasController extends Controller
      */
     public function create()
     {
-        $asesorias = AsesoriaProfesor::all();
-        return view("pages.administrador.Asesoria.create", compact('asesorias'));
+       
     }
 
     /**
@@ -46,10 +43,7 @@ class asesoriasController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new AsesoriaProfesor();
-        $data->Descripcion = $request->Descripcion; 
-        $data->save();
-        return redirect()->route('asesorias')->with('flash','Su informacion ha sido guardada satisfactoriamente.');
+      
     }
 
 
@@ -61,7 +55,8 @@ class asesoriasController extends Controller
      */
     public function show($id)
     {
-        //
+        $asesoria = AsesoriaProfesor::find($id);
+        return view('pages.administrador.Asesoria.view',compact('asesoria'));
     }
 
     /**
@@ -72,8 +67,7 @@ class asesoriasController extends Controller
      */
     public function edit($id)
     {
-        $asesorias = AsesoriaProfesor::findOrFail($id);
-        return view('pages.administrador.Asesoria.edit', compact('asesorias'));
+       
     }
 
     /**
@@ -85,10 +79,7 @@ class asesoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $asesorias = AsesoriaProfesor::findOrFail($id);
-        $asesorias->fill($request->all());
-        $asesorias->save();
-        return redirect()->route('asesorias')->with('flash','Su informacion ha sido actualizada con Exito.');
+      
 
     }
 
