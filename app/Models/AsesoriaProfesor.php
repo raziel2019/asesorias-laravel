@@ -13,7 +13,8 @@ class AsesoriaProfesor extends Model
         'user_id',
         'Descripcion',
         'FechaAsesoria',
-        'Estatus',  
+        'Estatus',
+        'Link',  
     ];
 
     public function profesores()

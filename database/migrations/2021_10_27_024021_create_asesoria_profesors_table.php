@@ -20,6 +20,7 @@ class CreateAsesoriaProfesorsTable extends Migration
             $table->string('Descripcion');
             $table->string('FechaAsesoria');
             $table->string('Estatus');
+            $table->string('Link');
             $table->foreign('perfil_profesor_id')
             ->references('id')
             ->on('perfil_profesors')

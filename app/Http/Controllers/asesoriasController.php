@@ -32,7 +32,10 @@ class asesoriasController extends Controller
      */
     public function create()
     {
-       
+        $profesores = PerfilProfesor::all(); 
+        $usuarios = User::all();
+        $asesorias = AsesoriaProfesor::all();
+        return view("pages.administrador.Asesoria.create", compact('profesores','usuarios','asesorias'));
     }
 
     /**
@@ -43,7 +46,15 @@ class asesoriasController extends Controller
      */
     public function store(Request $request)
     {
-      
+        $data = new AsesoriaProfesor();
+        $data->perfil_profesor_id = $request->perfil_profesor_id;
+        $data->user_id = $request->user_id;
+        $data->Descripcion = $request->Descripcion;
+        $data->FechaAsesoria = $request->FechaAsesoria;
+        $data->Estatus = $request->Estatus;
+        $data->Link = $request->Link;
+        $data->save();
+        return redirect()->route('asesorias')->with('flash','Su venta ha sido guardado satisfactoriamente.');
     }
 
 

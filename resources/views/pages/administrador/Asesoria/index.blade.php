@@ -12,6 +12,9 @@
                         <div class="col-8">
                             <h3 class="mb-0">Asesorias</h3>
                         </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('asesorias.create') }}" class="btn btn-sm btn-primary">Agregar asesorias</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -24,9 +27,10 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Movil Perfil profesor</th>
                                 <th scope="col">Asesoria</th>
                                 <th scope="col">Fecha de Creación</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Estatus</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -35,9 +39,10 @@
                         <tr>
                             <td>{{++$orden}}</td>
                             <td>{{$asesoria->users->name}}</td>
-                            <td>{{$asesoria->profesores->Movil}}</td>
                             <td>{{$asesoria->Descripcion}}</td>
                             <td>{{$asesoria->created_at}}</td> 
+                            <td>{{$asesoria->Link}}</td>
+                            <td>{{$asesoria->Estatus}}</td>
                             <td>           
                                 <form action="{{route("asesorias.destroy", $asesoria->id)}}" method="POST"> 
                                     @method("DELETE")

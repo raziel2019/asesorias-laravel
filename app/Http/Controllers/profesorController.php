@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
-class profesoresController extends Controller
+class profesorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +22,8 @@ class profesoresController extends Controller
         $usuarios = User::all();
         $profesiones = Profesion::all();
         $paises = Pais::all();
-        $profesores = PerfilProfesor::with('users','paises','profesiones')->paginate(6); 
-        return view('pages.administrador.Profesores.index', compact ('profesores') );
-       
+        $profesor = PerfilProfesor::with('users','paises','profesiones')->where('Usuarios_id', auth()->user()->id)->get(); 
+        return view('pages.profesor.Datos.index', compact ('profesor') );
     }
 
     /**
@@ -34,11 +33,7 @@ class profesoresController extends Controller
      */
     public function create()
     {
-        $profesores = PerfilProfesor::all(); 
-        $usuarios = User::all();
-        $profesiones = Profesion::all();
-        $paises = Pais::all();
-        return view("pages.administrador.Profesores.create", compact('profesores','usuarios','profesiones','paises'));
+        
     }
 
     /**
@@ -49,21 +44,7 @@ class profesoresController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new PerfilProfesor();
-        $data->Usuarios_id = $request->Usuarios_id;
-        $data->Profesion_id = $request->Profesion_id;
-        $data->Pais_id = $request->Pais_id;
-        $data->Email = $request->Email;
-        $data->Movil = $request->Movil;
-        $data->Linkedin = $request->Linkedin;
-        $data->ExpeLaboral = $request->ExpeLaboral;
-        $data->Logros = $request->Logros;
-        $data->FormacionAcademica = $request->FormacionAcademica;
-        $data->Aptitudes = $request->Aptitudes;
-        $data->Cursos = $request->Cursos;
-        $data->PerfilProfesorcol = $request->PerfilProfesorcol;
-        $data->save();
-        return redirect()->route('profesores')->with('flash','Su venta ha sido guardado satisfactoriamente.');
+       
     }
 
 
@@ -75,8 +56,7 @@ class profesoresController extends Controller
      */
     public function show($id)
     {
-        $profesores = PerfilProfesor::find($id);
-        return view('pages.administrador.Profesores.view',compact('profesores'));
+
     }
 
     /**
@@ -87,7 +67,8 @@ class profesoresController extends Controller
      */
     public function edit($id)
     {
-
+        $profesor = PerfilProfesor::findOrFail($id);
+        return view('pages.profesor.Datos.edit', compact('profesor'));
     }
 
     /**
@@ -99,6 +80,10 @@ class profesoresController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $profesor = PerfilProfesor::findOrFail($id);
+        $profesor->fill($request->all());
+        $profesor->save();
+        return redirect()->route('profesor')->with('flash','Su informacion ha sido actualizada con Exito.');
 
     }
 
@@ -110,9 +95,7 @@ class profesoresController extends Controller
      */
     public function destroy($id)
     {
-        $data = PerfilProfesor::findOrFail($id);
-        $data->delete();
-        return redirect()->route('profesores')->with('flash','Su información ha sido eliminada con Exito.');
+       
     }
 }
 

@@ -86,6 +86,24 @@
                 </li>
 @endhasanyrole
 
+@role('Profesor')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('profesor') }}">
+                      <i class="ni ni-circle-08 text-default"></i>
+                      <span class="nav-link-text">Mis Datos</span>
+                    </a>
+                </li>
+@endrole
+@role('Profesor')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('usuarios') }}">
+                      <i class="ni ni-circle-08 text-default"></i>
+                      <span class="nav-link-text">Solicitud de Asesorias</span>
+                    </a>
+                </li>
+@endrole
+
+
 @role('Administrador')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('usuarios') }}">

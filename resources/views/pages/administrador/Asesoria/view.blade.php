@@ -28,6 +28,7 @@
                                 <th scope="col">Fecha Asesoria</th>
                                 <th scope="col">Estatus</th>
                                 <th scope="col">Fecha</th>
+                                <th scope="col">Link</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -38,6 +39,7 @@
                             <td>{{$asesoria->FechaAsesoria}}</td>
                             <td>{{$asesoria->Estatus}}</td>
                             <td>{{$asesoria->created_at}}</td>
+                            <td>{{$asesoria->Link}}</td>
 
                         </tr>
                     </tbody>
