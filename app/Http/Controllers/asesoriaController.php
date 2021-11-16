@@ -2,22 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsesoriaEstudiante;
+use App\Models\PerfilProfesor;
+use App\Models\AsesoriaProfesor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
-class UsuariosController extends Controller
+class asesoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
-    {
-        $usuarios = User::paginate(5); 
-        return view('pages.administrador.usuarios.index', compact('usuarios'));
+    {        
+        $usuarios = User::all();
+        $profesores = PerfilProfesor::all();
+        $asesoria = AsesoriaProfesor::with('users','profesores')->where('user_id', auth()->user()->id)->get(); 
+        return view('pages.profesor.Asesorias.index', compact ('asesoria') );
+       
+    }
+
+    public function UsuarioAsesorias(){
+        $AsesoriaEstudiante = AsesoriaEstudiante::where('user_id', auth()->user()->id)->get(); 
+        return view('pages.usuario.Asesorias.index', compact ('AsesoriaEstudiante') );
     }
 
     /**
@@ -27,8 +39,7 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view("pages.administrador.usuarios.create", compact('roles'));
+        
     }
 
     /**
@@ -39,14 +50,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-
-        $usuarios = User::create($request->all());
-        if($request->has('password')){
-            $usuarios->password = Hash::make($request->password);
-        } 
-        $usuarios->save();
-        $usuarios->assignRole($request->get('nickname'));
-        return redirect()->route('usuarios')->with('flash','Su usuario ha sido guardado satisfactoriamente.');
+        
     }
 
 
@@ -58,7 +62,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -69,9 +73,8 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        $usuarios = User::findOrFail($id);
-        $roles = Role::all();
-        return view('pages.administrador.usuarios.edit', compact('usuarios','roles'));
+        $asesoria = AsesoriaProfesor::findOrFail($id);
+        return view('pages.profesor.Asesorias.edit', compact('asesoria'));
     }
 
     /**
@@ -83,15 +86,10 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuarios =  User::findOrFail($id);
-        $usuarios->fill($request->all());
-        if($request->has('password')){
-            $usuarios->password = Hash::make($request->password);
-        } 
-        $usuarios->save();
-        
-        $usuarios->assignRole($request->get('rol'));
-        return redirect()->route('usuarios')->with('flash','Su usuario ha sido actualizado con Exito.');
+        $asesoria = AsesoriaProfesor::findOrFail($id);
+        $asesoria->fill($request->all());
+        $asesoria->save();
+        return redirect()->route('asesoria')->with('flash','Su informacion ha sido actualizada con Exito.');
 
     }
 
@@ -103,9 +101,8 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        $usuarios = User::findOrFail($id);
-        $usuarios->delete();
-        return redirect()->route('usuarios')->with('flash','Su usuario ha sido eliminado con Exito.');
+
     }
 }
+
 

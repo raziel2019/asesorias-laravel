@@ -10,10 +10,10 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Asesorias Profesores</h3>
+                            <h1 class="mb-0">Estudiantes</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('asesorias.create') }}" class="btn btn-sm btn-primary">Agregar asesorias</a>
+                            <a href="{{ route('estudiantes.create') }}" class="btn btn-sm btn-primary">Agregar Estudiantes</a>
                         </div>
                     </div>
                 </div>
@@ -26,29 +26,30 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nombre Profesor</th>
-                                 <th scope="col">Asesoria</th>
-                                <th scope="col">Fecha de Creación</th>
-                                <th scope="col">Estatus</th>
+                                <th scope="col">Estudiante</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col">Intereses</th>
+                                <th scope="col">Fecha</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        @foreach ($asesorias as $orden=>$asesoria)
+                        @foreach ($Estudiantes as $orden=>$data)
                     <tbody>
                         <tr>
                             <td>{{++$orden}}</td>
-                            <td>{{$asesoria->users->name}}</td>
-                            <td>{{$asesoria->Descripcion}}</td>
-                            <td>{{$asesoria->created_at}}</td> 
-                            <td>{{$asesoria->Estatus}}</td>
-                            <td>           
-                                <form action="{{route("asesorias.destroy", $asesoria->id)}}" method="POST"> 
+                            <td>{{$data->users->name}}</td>
+                            <td>{{$data->Edad}}</td>
+                            <td>{{$data->Intereses}}</td>
+                            <td>{{$data->created_at}}</td>
+                           
+                            <td>                   
+                                <form action="{{route("estudiantes.destroy", $data->id)}}" method="POST"> 
                                     @method("DELETE")
                                     @csrf
-                                    <a class="btn btn-primary" href="{{ route('asesorias.show', $asesoria->id ) }}">Ver</a>
-                                <button class="btn btn-secondary" type="submit">Eliminar</button>
+                                    <a class="btn btn-primary" href="{{ route('estudiantes.edit', $data->id ) }}">Editar</a>
+                                    <button class="btn btn-secondary" type="submit">Eliminar</button>
                                 </form>
-                </td>
+                            </td>
                         </tr>
                     </tbody>
 
@@ -57,7 +58,7 @@
                 </div>
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ $asesorias->links('pagination::bootstrap-4') }}
+                        {{ $Estudiantes->links('pagination::bootstrap-4') }}
                         </nav>
                     </div>
             </div>
@@ -67,6 +68,5 @@
     
 </div>
 @endsection
-
 
 

@@ -101,7 +101,7 @@
         
                             <div class="form-group{{ $errors->has('  	role   ') ? ' has-danger' : '' }} col-md-6">
                                 <label class="form-control-label" for="input-status">{{ __('  	Roles  ') }}</label>
-                                <select name="rol" id="" class="form-control form-control-alternative">
+                                <select name="nickname" id="" class="form-control form-control-alternative">
                                     @foreach ($roles as $role)
                                     <option value="{{$role->id}}">{{$role->name}}</option>
                                     @endforeach

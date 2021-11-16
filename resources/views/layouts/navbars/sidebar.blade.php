@@ -96,9 +96,42 @@
 @endrole
 @role('Profesor')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('usuarios') }}">
+                    <a class="nav-link" href="{{ route('asesoria') }}">
                       <i class="ni ni-circle-08 text-default"></i>
-                      <span class="nav-link-text">Solicitud de Asesorias</span>
+                      <span class="nav-link-text">Asesorias Administrador</span>
+                    </a>
+                </li>
+@endrole
+
+@role('Profesor')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('AsesoriaEstudiante') }}">
+                      <i class="ni ni-circle-08 text-default"></i>
+                      <span class="nav-link-text">Asesorias Estudiantes</span>
+                    </a>
+                </li>
+@endrole
+@role('Usuario')
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">
+                      <i class="ni ni-circle-08 text-default"></i>
+                      <span class="nav-link-text">Perfil</span>
+                    </a>
+                </li>
+@endrole
+@role('Usuario')
+                <li class="nav-item">
+                    <a class="nav-link" href="/UsuarioAsesorias">
+                      <i class="ni ni-circle-08 text-default"></i>
+                      <span class="nav-link-text">Mis Asesorias</span>
+                    </a>
+                </li>
+@endrole
+@role('Usuario')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('ProfesoresDisponibles') }}">
+                      <i class="ni ni-hat-3 text-default"></i>
+                      <span class="nav-link-text">Profesores</span>
                     </a>
                 </li>
 @endrole
@@ -120,6 +153,7 @@
                     </a>
                 </li>
 @endrole
+
 @role('Administrador')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('paises') }}">

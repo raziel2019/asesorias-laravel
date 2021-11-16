@@ -11,12 +11,12 @@
             </div>
         </div>
                     <div class="card-body mt--5">
-                        <form class="form-row " method="post" action="{{ route('asesorias.store' ) }}" autocomplete="off" enctype="multipart/form-data">
+                        <form class="form-row " method="post" action="{{ route('AsesoriaEstudiante.store' ) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('post')
                             
                             <div class="form-group{{ $errors->has('user_id') ? ' has-danger' : '' }} col-md-12">
-                                <label class="form-control-label" for="input-status">{{ __('Profesor') }}</label>
+                                <label class="form-control-label" for="input-status">{{ __('Estudiante') }}</label>
                                 <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror" required>
                                     @foreach ($usuarios as $usuario)
                                         <option value="{{$usuario->id}}">{{$usuario->name}}</option>
@@ -24,14 +24,6 @@
                                 </select>
                             </div>
                             
-                            <div class="form-group{{ $errors->has('perfil_profesor_id') ? ' has-danger' : '' }} col-md-12">
-                                <label class="form-control-label" for="input-status">{{ __('Correo Profesores') }}</label>
-                                <select id="perfil_profesor_id" name="perfil_profesor_id" class="form-control @error('perfil_profesor_id') is-invalid @enderror" required>
-                                    @foreach ($profesores as $profesor)
-                                        <option value="{{$profesor->id}}">{{$profesor->email}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="form-group{{ $errors->has('Nota del estudiante') ? ' has-danger' : '' }} col-md-12">
                                 <label class="form-control-label" for="input-status">{{ __('Nombre de usuario') }}</label>
                                 <input type="text" name="NombreEstudiante" id="NombreEstudiante" class="form-control form-control-alternative{{ $errors->has('status') ? ' is-invalid' : '' }}" placeholder="{{ __('NombreEstudiante') }}" value="{{auth()->user()->name }}" required>

@@ -54,6 +54,15 @@ Route::group(['middleware' => ['role:Administrador']], function () {
 	Route::get('/profesores/{id}', 'App\Http\Controllers\profesoresController@show')->name('profesores.show');
 	Route::delete('/profesores/{id}','App\Http\Controllers\profesoresController@destroy')->name('profesores.destroy');
 
+	//Estudiantes
+	Route::get('/estudiantes', 'App\Http\Controllers\estudiantesController@index')->name('estudiantes');
+	Route::get('/estudiantes/create', 'App\Http\Controllers\estudiantesController@create')->name('estudiantes.create');
+	Route::post('/estudiantes', 'App\Http\Controllers\estudiantesController@store')->name('estudiantes.store');
+
+	Route::get('/estudiantes/{id}/edit','App\Http\Controllers\estudiantesController@edit')->name('estudiantes.edit');
+	Route::put('/estudiantes/{id}','App\Http\Controllers\estudiantesController@update')->name('estudiantes.update');
+	Route::delete('/estudiantes/{id}','App\Http\Controllers\estudiantesController@destroy')->name('estudiantes.destroy');
+
 	//Paises
 	Route::get('/paises', 'App\Http\Controllers\paisController@index')->name('paises');
 	Route::get('/paises/create', 'App\Http\Controllers\paisController@create')->name('paises.create');
@@ -80,7 +89,40 @@ Route::group(['middleware' => ['role:Administrador']], function () {
 });
 
 Route::group(['middleware' => ['role:Profesor']], function () {
+	
+	//Profesor
 	Route::get('/profesor', 'App\Http\Controllers\profesorController@index')->name('profesor');
 	Route::get('/profesor/{id}/edit','App\Http\Controllers\profesorController@edit')->name('profesor.edit');
 	Route::put('/profesor/{id}','App\Http\Controllers\profesorController@update')->name('profesor.update');
+
+	//Asesoria
+	Route::get('/asesoria', 'App\Http\Controllers\asesoriaController@index')->name('asesoria');
+	Route::get('/asesoria/{id}/edit','App\Http\Controllers\asesoriaController@edit')->name('asesoria.edit');
+	Route::put('/asesoria/{id}','App\Http\Controllers\asesoriaController@update')->name('asesoria.update');
+
+	//Asesoria Estudiante
+	Route::get('/AsesoriaEstudiante', 'App\Http\Controllers\AsesoriaEstudianteController@index')->name('AsesoriaEstudiante');
+	Route::get('/AsesoriaEstudiante/create', 'App\Http\Controllers\AsesoriaEstudianteController@create')->name('AsesoriaEstudiante.create');
+	Route::post('/AsesoriaEstudiante', 'App\Http\Controllers\AsesoriaEstudianteController@store')->name('AsesoriaEstudiante.store');
+	Route::get('/AsesoriaEstudiante/{id}/edit','App\Http\Controllers\AsesoriaEstudianteController@edit')->name('AsesoriaEstudiante.edit');
+	Route::put('/AsesoriaEstudiante/{id}','App\Http\Controllers\AsesoriaEstudianteController@update')->name('AsesoriaEstudiante.update');
+	Route::delete('/AsesoriaEstudiante/{id}','App\Http\Controllers\AsesoriaEstudianteController@destroy')->name('AsesoriaEstudiante.destroy');
+
+
+
+	});
+
+Route::group(['middleware' => ['role:Usuario']], function () {
+	
+	//Profesor
+	Route::get('/ProfesoresDisponibles', 'App\Http\Controllers\ProfesoresDisponiblesController@index')->name('ProfesoresDisponibles');
+	Route::get('/ProfesoresDisponibles/create', 'App\Http\Controllers\ProfesoresDisponiblesController@create')->name('ProfesoresDisponibles.create');
+	Route::post('/ProfesoresDisponibles', 'App\Http\Controllers\ProfesoresDisponiblesController@store')->name('ProfesoresDisponibles.store');
+	Route::get('/ProfesoresDisponibles/{id}/edit','App\Http\Controllers\ProfesoresDisponiblesController@edit')->name('ProfesoresDisponibles.edit');
+	Route::put('/ProfesoresDisponibles/{id}','App\Http\Controllers\ProfesoresDisponiblesController@update')->name('ProfesoresDisponibles.update');
+
+
+	//Asesorias
+	Route::get('/UsuarioAsesorias', 'App\Http\Controllers\asesoriaController@UsuarioAsesorias')->name('UsuarioAsesorias');
+
 });

@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsesoriaProfesor;
-use App\Models\PerfilProfesor;
 use App\Models\User;
+use App\Models\AsesoriaEstudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
-class asesoriasController extends Controller
+class AsesoriaEstudianteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {        
         $usuarios = User::all();
-        $profesores = PerfilProfesor::all();
-        $asesorias = AsesoriaProfesor::with('users','profesores')->paginate(6); 
-        return view('pages.administrador.Asesoria.index', compact ('asesorias') );
+        $AsesoriaEstudiante = AsesoriaEstudiante::all();
+        return view('pages.profesor.AsesoriasEstudiantes.index', compact ('AsesoriaEstudiante') );
        
     }
 
@@ -32,12 +32,11 @@ class asesoriasController extends Controller
      */
     public function create()
     {
-        $profesores = PerfilProfesor::all(); 
+        $AsesoriaEstudiante= AsesoriaEstudiante::all(); 
         $usuarios = User::whereHas("roles", function($consulta) {
-            $consulta->where("name", "Profesor") ;
+            $consulta->where("name", "Usuario") ;
         })->get();
-        $asesorias = AsesoriaProfesor::all();
-        return view("pages.administrador.Asesoria.create", compact('profesores','usuarios','asesorias'));
+        return view("pages.profesor.AsesoriasEstudiantes.create", compact('AsesoriaEstudiante','usuarios'));
     }
 
     /**
@@ -48,16 +47,14 @@ class asesoriasController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new AsesoriaProfesor();
-        $data->perfil_profesor_id = $request->perfil_profesor_id;
+        $data = new AsesoriaEstudiante();
         $data->user_id = $request->user_id;
-        $data->NombreEstudiante = $request->NombreEstudiante;
         $data->Descripcion = $request->Descripcion;
         $data->FechaAsesoria = $request->FechaAsesoria;
         $data->Estatus = $request->Estatus;
         $data->Link = $request->Link;
         $data->save();
-        return redirect()->route('asesorias')->with('flash','Su venta ha sido guardado satisfactoriamente.');
+        return redirect()->route('AsesoriaEstudiante')->with('flash','Su venta ha sido guardado satisfactoriamente.');
     }
 
 
@@ -69,8 +66,7 @@ class asesoriasController extends Controller
      */
     public function show($id)
     {
-        $asesoria = AsesoriaProfesor::find($id);
-        return view('pages.administrador.Asesoria.view',compact('asesoria'));
+       
     }
 
     /**
@@ -81,7 +77,8 @@ class asesoriasController extends Controller
      */
     public function edit($id)
     {
-       
+        $AsesoriaEstudiante= AsesoriaEstudiante::find($id);
+        return view('pages.profesor.AsesoriasEstudiantes.edit',compact('AsesoriaEstudiante'));
     }
 
     /**
@@ -93,8 +90,10 @@ class asesoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
-
+        $AsesoriaEstudiante= AsesoriaEstudiante::findOrFail($id);
+        $AsesoriaEstudiante->fill($request->all());
+        $AsesoriaEstudiante->save();
+        return redirect()->route('AsesoriaEstudiante')->with('flash','Su informacion ha sido actualizada con Exito.');
     }
 
     /**
@@ -105,9 +104,9 @@ class asesoriasController extends Controller
      */
     public function destroy($id)
     {
-        $data = AsesoriaProfesor::findOrFail($id);
+        $data = AsesoriaEstudiante::findOrFail($id);
         $data->delete();
-        return redirect()->route('asesorias')->with('flash','Su información ha sido eliminada con Exito.');
+        return redirect()->route('AsesoriaEstudiante')->with('flash','Su información ha sido eliminada con Exito.');
     }
 }
 

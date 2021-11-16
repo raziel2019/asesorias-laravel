@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h1 class="mb-0">Asesoria de {{$asesoria->users->name}} </h3>
+                            <h1 class="mb-0">Mis Asesorias</h3>
                         </div>
                     </div>
                 </div>
@@ -22,25 +22,22 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
                                 <th scope="col">Descripcion</th>
-                                <th scope="col">Fecha Asesoria</th>
+                                <th scope="col">Fecha de Asesoria</th>
                                 <th scope="col">Estatus</th>
-                                <th scope="col">Fecha</th>
+                                <th scope="col">Link Asesoria </th>
                             </tr>
                         </thead>
+                        @foreach ($AsesoriaEstudiante as $orden=>$data)
                     <tbody>
                         <tr>
-                            <td>{{$asesoria->id}}</td>
-                            <td>{{$asesoria->users->name}}</td>
-                            <td>{{$asesoria->Descripcion}}</td>
-                            <td>{{$asesoria->FechaAsesoria}}</td>
-                            <td>{{$asesoria->Estatus}}</td>
-                            <td>{{$asesoria->created_at}}</td>
-
+                            <td>{{$data->Descripcion}}</td>
+                            <td>{{$data->FechaAsesoria}}</td>
+                            <td>{{$data->Estatus}}</td>
+                            <td>{{$data->Link}}</td>           
                         </tr>
                     </tbody>
+                    @endforeach
                     </table>
                 </div>
             </div>

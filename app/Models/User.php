@@ -31,6 +31,10 @@ class User extends Authenticatable
         {
             return $this->hasMany(AsesoriaProfesor::class,'user_id','id');
         }
+    public function asesoria_estudiante()
+        {
+            return $this->hasMany(AsesoriaEstudiante::class,'user_id','id');
+        }
     public function perfil_profesor()
         {
             return $this->hasMany(PerfilProfesor::class,'Usuarios_id','id');

@@ -10,10 +10,10 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Asesorias Profesores</h3>
+                            <h3 class="mb-0">Asesorias Estudiantes</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('asesorias.create') }}" class="btn btn-sm btn-primary">Agregar asesorias</a>
+                            <a href="{{ route('AsesoriaEstudiante.create') }}" class="btn btn-sm btn-primary">Agregar asesorias</a>
                         </div>
                     </div>
                 </div>
@@ -26,14 +26,14 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nombre Profesor</th>
+                                <th scope="col">Nombre Estudiante</th>
                                  <th scope="col">Asesoria</th>
                                 <th scope="col">Fecha de Creación</th>
                                 <th scope="col">Estatus</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        @foreach ($asesorias as $orden=>$asesoria)
+                        @foreach ($AsesoriaEstudiante as $orden=>$asesoria)
                     <tbody>
                         <tr>
                             <td>{{++$orden}}</td>
@@ -42,10 +42,10 @@
                             <td>{{$asesoria->created_at}}</td> 
                             <td>{{$asesoria->Estatus}}</td>
                             <td>           
-                                <form action="{{route("asesorias.destroy", $asesoria->id)}}" method="POST"> 
+                                <form action="{{route("AsesoriaEstudiante.destroy", $asesoria->id)}}" method="POST"> 
                                     @method("DELETE")
                                     @csrf
-                                    <a class="btn btn-primary" href="{{ route('asesorias.show', $asesoria->id ) }}">Ver</a>
+                                    <a class="btn btn-primary" href="{{ route('AsesoriaEstudiante.edit', $asesoria->id ) }}">Editar</a>
                                 <button class="btn btn-secondary" type="submit">Eliminar</button>
                                 </form>
                 </td>
@@ -55,11 +55,7 @@
                     @endforeach
                     </table>
                 </div>
-                <div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ $asesorias->links('pagination::bootstrap-4') }}
-                        </nav>
-                    </div>
+
             </div>
         </div>
         
