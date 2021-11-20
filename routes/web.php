@@ -126,3 +126,6 @@ Route::group(['middleware' => ['role:Usuario']], function () {
 	Route::get('/UsuarioAsesorias', 'App\Http\Controllers\asesoriaController@UsuarioAsesorias')->name('UsuarioAsesorias');
 
 });
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
